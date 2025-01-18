@@ -1,0 +1,149 @@
+[
+  {
+    "ContainingType": "Booking.API.Endpoints.EventEndpoints",
+    "Method": "HandlePostEvent",
+    "RelativePath": "event/",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "eventRequest",
+        "Type": "Booking.API.Requests.CreateEventRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Booking.Domain.Entities.Event",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Http.HttpValidationProblemDetails",
+        "MediaTypes": [
+          "application/problem\u002Bjson"
+        ],
+        "StatusCode": 400
+      }
+    ],
+    "Summary": "Add new event"
+  },
+  {
+    "ContainingType": "Booking.API.Endpoints.EventEndpoints",
+    "Method": "HandleGetEvent",
+    "RelativePath": "event/{id}",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Void",
+        "MediaTypes": [],
+        "StatusCode": 200
+      }
+    ],
+    "Summary": "Gets a specific event by its id "
+  },
+  {
+    "ContainingType": "Booking.API.Endpoints.EventEndpoints",
+    "Method": "HandleGetReport",
+    "RelativePath": "event/{id}/getReport",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Booking.Domain.UsefulModels.SalesReport",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      }
+    ],
+    "Summary": "Get sales report about event"
+  },
+  {
+    "ContainingType": "Booking.API.Endpoints.EventEndpoints",
+    "Method": "HandleGetEvents",
+    "RelativePath": "event/getFiltered",
+    "HttpMethod": "GET",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Category",
+        "Type": "Booking.Domain.UsefulModels.EventCategory",
+        "IsRequired": true
+      },
+      {
+        "Name": "From",
+        "Type": "System.DateTime",
+        "IsRequired": true
+      },
+      {
+        "Name": "To",
+        "Type": "System.DateTime",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[Booking.Domain.Entities.Event, Booking.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "application/json"
+        ],
+        "StatusCode": 200
+      },
+      {
+        "Type": "Microsoft.AspNetCore.Http.HttpValidationProblemDetails",
+        "MediaTypes": [
+          "application/problem\u002Bjson"
+        ],
+        "StatusCode": 400
+      }
+    ],
+    "Summary": "Filter events by category and date range"
+  },
+  {
+    "ContainingType": "Booking.API.Endpoints.ReservationEndpoint",
+    "Method": "HandlePostReservation",
+    "RelativePath": "reservation/",
+    "HttpMethod": "POST",
+    "IsController": false,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "reservationRequest",
+        "Type": "Booking.API.Requests.CreateReservationRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "Microsoft.AspNetCore.Http.HttpValidationProblemDetails",
+        "MediaTypes": [
+          "application/problem\u002Bjson"
+        ],
+        "StatusCode": 400
+      }
+    ],
+    "Summary": "Add new reservation for event"
+  }
+]

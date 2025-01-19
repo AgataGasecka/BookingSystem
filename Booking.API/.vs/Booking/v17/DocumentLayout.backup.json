@@ -6,11 +6,11 @@
       "AbsoluteMoniker": "D:0:0:{BF4DA041-FC23-4DD9-BAF1-763EC4BDCA30}|..\\Booking.Persistence\\Booking.Persistence.csproj|c:\\users\\kopecka\\rekrutacja\\booking.persistence\\repositories\\eventrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2B9CD605-53AB-43AE-BD53-A67A7CF989B3}|..\\Booking.Domain\\Booking.Domain.csproj|c:\\users\\kopecka\\rekrutacja\\booking.domain\\entities\\event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F611C68D-CB09-43E9-96C8-AA47AD331B88}|Booking.API.csproj|c:\\users\\kopecka\\rekrutacja\\booking.api\\endpoints\\eventendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F611C68D-CB09-43E9-96C8-AA47AD331B88}|Booking.API.csproj|solutionrelative:endpoints\\eventendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2B9CD605-53AB-43AE-BD53-A67A7CF989B3}|..\\Booking.Domain\\Booking.Domain.csproj|c:\\users\\kopecka\\rekrutacja\\booking.domain\\entities\\event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2B9CD605-53AB-43AE-BD53-A67A7CF989B3}|..\\Booking.Domain\\Booking.Domain.csproj|c:\\users\\kopecka\\rekrutacja\\booking.domain\\abstract\\ieventrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
@@ -131,7 +131,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Event.cs",
               "DocumentMoniker": "C:\\Users\\Kopecka\\Rekrutacja\\Booking.Domain\\Entities\\Event.cs",
               "RelativeDocumentMoniker": "..\\Booking.Domain\\Entities\\Event.cs",
@@ -148,9 +148,9 @@
               "Title": "EventRepository.cs",
               "DocumentMoniker": "C:\\Users\\Kopecka\\Rekrutacja\\Booking.Persistence\\Repositories\\EventRepository.cs",
               "RelativeDocumentMoniker": "..\\Booking.Persistence\\Repositories\\EventRepository.cs",
-              "ToolTip": "C:\\Users\\Kopecka\\Rekrutacja\\Booking.Persistence\\Repositories\\EventRepository.cs*",
-              "RelativeToolTip": "..\\Booking.Persistence\\Repositories\\EventRepository.cs*",
-              "ViewState": "AgIAAA8AAAAAAAAAAAD4vx0AAAAAAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\Kopecka\\Rekrutacja\\Booking.Persistence\\Repositories\\EventRepository.cs",
+              "RelativeToolTip": "..\\Booking.Persistence\\Repositories\\EventRepository.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAD4vx8AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-18T17:01:27.458Z",
               "EditorCaption": ""
@@ -170,13 +170,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "EventEndpoints.cs",
               "DocumentMoniker": "C:\\Users\\Kopecka\\Rekrutacja\\Booking.API\\Endpoints\\EventEndpoints.cs",
               "RelativeDocumentMoniker": "Endpoints\\EventEndpoints.cs",
-              "ToolTip": "C:\\Users\\Kopecka\\Rekrutacja\\Booking.API\\Endpoints\\EventEndpoints.cs*",
-              "RelativeToolTip": "Endpoints\\EventEndpoints.cs*",
-              "ViewState": "AgIAAEYAAAAAAAAAAAAAAFkAAAAAAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\Kopecka\\Rekrutacja\\Booking.API\\Endpoints\\EventEndpoints.cs",
+              "RelativeToolTip": "Endpoints\\EventEndpoints.cs",
+              "ViewState": "AgIAAEYAAAAAAAAAAAAAAFUAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-18T17:32:27.706Z",
               "EditorCaption": ""

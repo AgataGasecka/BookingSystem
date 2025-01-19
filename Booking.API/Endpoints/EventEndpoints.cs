@@ -37,7 +37,7 @@ public static class EventEndpoints
         var eventItem = await eventRepository.GetEvent(id);
         if (eventItem == null)
             return Results.NotFound("Event with given id doesn't exist");
-        
+
         return Results.Ok(eventItem.CreateResponse());
     }
 
@@ -52,7 +52,11 @@ public static class EventEndpoints
         var events = await eventRepository.GetEvents(eventRequest.Category, period);
         if (events.Count() == 0)
             return Results.NotFound("No events for given category and period");
-        var response = events.Select(e => e.CreateResponse()).ToList();
+
+        var totalCount = events.Count();
+        var totalPages = (int)Math.Ceiling((decimal) totalCount / eventRequest.PageSize);
+        var eventsPerPage = events.Skip((eventRequest.Page - 1) * eventRequest.PageSize).Take(eventRequest.PageSize);
+        var response = eventsPerPage.Select(e => e.CreateResponse()).ToList();
         return Results.Ok(response);
     }
 

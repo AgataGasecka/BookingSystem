@@ -149,14 +149,7 @@
         ],
         "responses": {
           "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SalesReport"
-                }
-              }
-            }
+            "description": "OK"
           }
         }
       }
@@ -376,41 +369,6 @@
           "reservationDate": {
             "type": "string",
             "format": "date-time"
-          }
-        },
-        "additionalProperties": false
-      },
-      "SalesReport": {
-        "type": "object",
-        "properties": {
-          "salesReportDictionary": {
-            "type": "object",
-            "additionalProperties": {
-              "$ref": "#/components/schemas/SalesReportRow"
-            },
-            "nullable": true
-          },
-          "totalAmountSum": {
-            "type": "number",
-            "format": "double"
-          },
-          "totalNumberOfSoldTickets": {
-            "type": "integer",
-            "format": "int32"
-          }
-        },
-        "additionalProperties": false
-      },
-      "SalesReportRow": {
-        "type": "object",
-        "properties": {
-          "dailyAmountsSum": {
-            "type": "number",
-            "format": "double"
-          },
-          "dailyNumberOfSoldTickets": {
-            "type": "integer",
-            "format": "int32"
           }
         },
         "additionalProperties": false

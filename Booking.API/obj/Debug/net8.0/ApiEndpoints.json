@@ -70,10 +70,8 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Booking.Domain.UsefulModels.SalesReport",
-        "MediaTypes": [
-          "application/json"
-        ],
+        "Type": "System.Void",
+        "MediaTypes": [],
         "StatusCode": 200
       }
     ],

@@ -16,7 +16,6 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectio
 b => b.MigrationsAssembly(typeof(EventBookingDbContext).Assembly.FullName)));
 
 builder.Services.AddScoped<IEventRepository, EventRepository>();
-builder.Services.AddScoped<IReservationRepository, ReservationRepository>();
 
 builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 

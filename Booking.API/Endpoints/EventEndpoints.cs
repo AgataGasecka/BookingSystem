@@ -36,7 +36,7 @@ public static class EventEndpoints
     {
         var eventItem = await eventRepository.GetEvent(id);
         if (eventItem == null)
-            return Results.NotFound();
+            return Results.NotFound("Event with given id doesn't exist");
         return Results.Ok(eventItem);
     }
 
@@ -69,11 +69,14 @@ public static class EventEndpoints
         return await eventRepository.CreateEvent(eventToCreate);
 
     }
-    static async Task<SalesReport> HandleGetReport(int id, IEventRepository eventRepository)
+    static async Task<IResult> HandleGetReport(int id, IEventRepository eventRepository)
     {
-        var salesReport = await eventRepository.CreateReport(id);
+        var eventItem = await eventRepository.GetEvent(id);
+        if (eventItem == null)
+            return Results.NotFound("Event with given id doesn't exist");
+        var reservations = await eventRepository.GetReservationsForEvent(id);
 
-        return salesReport;
+        return Results.Ok(eventItem.GenerateSalesReport(reservations.ToList()));
     }
 }
 

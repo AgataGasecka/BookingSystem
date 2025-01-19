@@ -23,7 +23,7 @@ public class CreateEventValidator : AbstractValidator<CreateEventRequest>
     {
         RuleFor(x => x.Name).NotEmpty();
         RuleFor(x => x.Date).Must(x => x.Date > DateTime.Now).NotEmpty();
-        RuleFor(x => x.AnnouncementDate).Must(x => x.Date >= DateTime.Now).NotEmpty();
+        RuleFor(x => x.AnnouncementDate).NotEmpty();
         RuleFor(x => x.AnnouncementDate).LessThan(x => x.Date);
         RuleFor(x => x.Category).IsInEnum();
         RuleFor(x => x.TicketPrice).GreaterThan(0).NotEmpty();

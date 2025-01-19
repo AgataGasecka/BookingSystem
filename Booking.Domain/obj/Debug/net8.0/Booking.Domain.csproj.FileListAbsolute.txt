@@ -20,3 +20,4 @@ C:\Users\Kopecka\Rekrutacja\Booking.Domain\obj\Debug\net8.0\Booking.Domain.dll
 C:\Users\Kopecka\Rekrutacja\Booking.Domain\obj\Debug\net8.0\refint\Booking.Domain.dll
 C:\Users\Kopecka\Rekrutacja\Booking.Domain\obj\Debug\net8.0\Booking.Domain.pdb
 C:\Users\Kopecka\Rekrutacja\Booking.Domain\obj\Debug\net8.0\ref\Booking.Domain.dll
+C:\Users\Kopecka\Rekrutacja\Booking.Domain\obj\Debug\net8.0\Booking.Domain.sourcelink.json

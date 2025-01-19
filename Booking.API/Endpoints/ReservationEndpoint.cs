@@ -1,6 +1,5 @@
 ﻿using Booking.API.Requests;
 using Booking.Domain.Abstract;
-using Booking.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Booking.API.Endpoints;
@@ -15,16 +14,15 @@ public static class ReservationEndpoint
             .WithRequestValidation<CreateReservationRequest>()
             .WithOpenApi();
     }
-    static async Task HandlePostReservation(IReservationRepository reservationRepository, [FromBody] CreateReservationRequest reservationRequest)
+    static async Task<IResult> HandlePostReservation(IEventRepository eventRepository, [FromBody] CreateReservationRequest reservationRequest)
     {
-        var reservationToCreate = new Reservation
-        {
-            EventId = reservationRequest.EventId,
-            OwnerName = reservationRequest.OwnerName,
-            NumberOfTickets = reservationRequest.NumberOfTickets,
-            ReservationDate = DateTime.UtcNow
-        };
-        await reservationRepository.AddReservation(reservationToCreate);
+        var eventItem = await eventRepository.GetEvent(reservationRequest.EventId);
+        var reservation = eventItem.CreateReservation(reservationRequest.NumberOfTickets, reservationRequest.OwnerName);
+        await eventRepository.UpdateEventReservations(reservation, eventItem.Id, eventItem.AvailableTickets);
+        if (reservation == null)
+            return Results.NoContent();// wymysl jak ulepszyc
+        return Results.Ok(reservation);
+       
     }
 
 }

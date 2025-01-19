@@ -7,8 +7,7 @@ public interface IEventRepository
 {
     Task<IEnumerable<Event>> GetEvents(EventCategory category, Period period);
     Task<Event> GetEvent(int eventId);
-    Task<SalesReport> CreateReport(int eventId);
     Task<Event> CreateEvent(Event eventItem);
-    Task<int> CountAllEvents();
-    Task ReduceNumberOfAvailableTickets(int eventId, int numberOfTickets);
+    Task<IEnumerable<Reservation>> GetReservationsForEvent(int eventId);
+    Task UpdateEventReservations(Reservation reservation, int eventId, int availableTicketsNumber);
 }

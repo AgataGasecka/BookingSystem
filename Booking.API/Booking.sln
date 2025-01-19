@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booking.Domain", "..\Bookin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booking.Persistence", "..\Booking.Persistence\Booking.Persistence.csproj", "{BF4DA041-FC23-4DD9-BAF1-763EC4BDCA30}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booking.Tests", "..\Booking.Tests\Booking.Tests.csproj", "{6E0E9BAE-8CF0-419C-B400-16B13BAE44B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{BF4DA041-FC23-4DD9-BAF1-763EC4BDCA30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF4DA041-FC23-4DD9-BAF1-763EC4BDCA30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF4DA041-FC23-4DD9-BAF1-763EC4BDCA30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E0E9BAE-8CF0-419C-B400-16B13BAE44B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E0E9BAE-8CF0-419C-B400-16B13BAE44B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E0E9BAE-8CF0-419C-B400-16B13BAE44B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E0E9BAE-8CF0-419C-B400-16B13BAE44B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,8 +1,8 @@
 ﻿using Booking.API.Requests;
+using Booking.Domain;
 using Booking.Domain.Abstract;
 using Booking.Domain.Entities;
 using Booking.Domain.UsefulModels;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Booking.API.Endpoints;
@@ -36,9 +36,9 @@ public static class EventEndpoints
     {
         var eventItem = await eventRepository.GetEvent(id);
         if (eventItem == null)
-            return Results.NotFound("Event with given id doesn't exist");
+            return Results.NotFound(Errors.NotFound);
 
-        return Results.Ok(eventItem.CreateResponse());
+        return Results.Ok(eventItem);
     }
 
 
@@ -51,13 +51,13 @@ public static class EventEndpoints
         };
         var events = await eventRepository.GetEvents(eventRequest.Category, period);
         if (events.Count() == 0)
-            return Results.NotFound("No events for given category and period");
+            return Results.NotFound(Errors.NoContentForParameters);
 
         var totalCount = events.Count();
         var totalPages = (int)Math.Ceiling((decimal) totalCount / eventRequest.PageSize);
         var eventsPerPage = events.Skip((eventRequest.Page - 1) * eventRequest.PageSize).Take(eventRequest.PageSize);
-        var response = eventsPerPage.Select(e => e.CreateResponse()).ToList();
-        return Results.Ok(response);
+        
+        return Results.Ok(eventsPerPage);
     }
 
 
@@ -76,7 +76,7 @@ public static class EventEndpoints
         };
         var createdEvent = await eventRepository.CreateEvent(eventToCreate);
         if (createdEvent == null)
-            return Results.Problem("Adding event failed");
+            return Results.Problem(Errors.Failure);
         return Results.Ok(createdEvent);
 
     }
@@ -84,7 +84,7 @@ public static class EventEndpoints
     {
         var eventItem = await eventRepository.GetEvent(id);
         if (eventItem == null)
-            return Results.NotFound("Event with given id doesn't exist");
+            return Results.NotFound(Errors.NotFound);
         return Results.Ok(eventItem.GenerateSalesReport());
     }
 }

@@ -5,8 +5,8 @@ using FluentValidation;
 namespace Booking.API.Requests;
 public record CreateEventRequest
 {
-    public string Name { get; init; }
-    public string Description { get; init; }
+    public string Name { get; init; } = string.Empty;
+    public string Description { get; init; } = string.Empty;
     public DateTime AnnouncementDate { get; init; }
     public DateTime Date { get; init; }
 
@@ -27,9 +27,8 @@ public class CreateEventValidator : AbstractValidator<CreateEventRequest>
         RuleFor(x => x.AnnouncementDate).LessThan(x => x.Date);
         RuleFor(x => x.Category).IsInEnum();
         RuleFor(x => x.TicketPrice).GreaterThan(0).NotEmpty();
-        RuleFor(x => x.TotalTickets).GreaterThan(0).NotEmpty() ;
+        RuleFor(x => x.TotalTickets).GreaterThan(0).NotEmpty();
         RuleFor(x => x.AvailableTickets).LessThanOrEqualTo(x => x.TotalTickets).NotEmpty();
-
     }
 }
 

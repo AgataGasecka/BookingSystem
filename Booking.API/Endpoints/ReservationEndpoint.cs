@@ -1,4 +1,5 @@
 ﻿using Booking.API.Requests;
+using Booking.Domain;
 using Booking.Domain.Abstract;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,10 +18,12 @@ public static class ReservationEndpoint
     static async Task<IResult> HandlePostReservation(IEventRepository eventRepository, [FromBody] CreateReservationRequest reservationRequest)
     {
         var eventItem = await eventRepository.GetEvent(reservationRequest.EventId);
+        if (!eventItem.GivenNumberOfTicketsIsAvailable(reservationRequest.NumberOfTickets))
+            return Results.Problem(Errors.TooLessTickets);
         var reservation = eventItem.CreateReservation(reservationRequest.NumberOfTickets, reservationRequest.OwnerName);
         await eventRepository.UpdateEventReservations(reservation, eventItem.Id, eventItem.AvailableTickets);
         if (reservation == null)
-            return Results.Problem("Adding reservation failed");
+            return Results.Problem(Errors.Failure);
         return Results.Ok(reservation);
        
     }

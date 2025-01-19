@@ -1,14 +1,13 @@
-﻿using Booking.Domain.Responses;
-using Booking.Domain.UsefulModels;
+﻿using Booking.Domain.UsefulModels;
 
 namespace Booking.Domain.Entities;
 public class Event : EventBase
 {
-    public string Name { get; set; }
-    public string Description { get; set; }
+    public string Name { get; set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
     public DateTime AnnouncementDate { get; set; }
     public DateTime Date { get; set; }
-    public string Category { get; set; }
+    public string Category { get; set; } = EventCategory.Music.ToString();
 
     //It wasn't mentioned in the task description,
     // but I determined it is worth to have ticket price
@@ -21,8 +20,6 @@ public class Event : EventBase
 
     public Reservation CreateReservation(int numberOfTickets, string ownerName)
     {
-        if (!GivenNumberOfTicketsIsAvailable(numberOfTickets))
-            throw new Exception("Too less tickets left for this reservation");
         var createdReservation = new Reservation
         {
             Amount = ComputeAmonutForTickets(numberOfTickets),
@@ -74,19 +71,6 @@ public class Event : EventBase
 
         }
         return report;
-    }
-
-    public GetEventResponse CreateResponse()
-    {
-        return new GetEventResponse()
-        {
-            AvailableTickets = AvailableTickets,
-            Name = Name,
-            Category = Category,
-            TicketPrice = TicketPrice,
-            Date = Date,
-            Description = Description
-        };
     }
 }
 

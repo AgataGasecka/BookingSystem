@@ -20,5 +20,3 @@ public class EventBookingDbContext : DbContext
             .HasColumnType("int");
     }
 }
-
-

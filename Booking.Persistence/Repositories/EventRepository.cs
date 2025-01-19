@@ -1,10 +1,10 @@
-﻿using Booking.Domain.Abstract;
+﻿using Booking.Domain;
+using Booking.Domain.Abstract;
 using Booking.Domain.Entities;
 using Booking.Domain.UsefulModels;
 using Microsoft.EntityFrameworkCore;
 using Polly;
 using Polly.Retry;
-
 
 namespace Booking.Persistence.Repositories;
 public class EventRepository : IEventRepository
@@ -49,7 +49,7 @@ public class EventRepository : IEventRepository
             catch (DbUpdateConcurrencyException ex)
             {
                 await ex.Entries.Single().ReloadAsync();
-                throw new Exception($"Concurrency exception occured: {ex.Message}");
+                throw new Exception(Errors.ConcurencyError + ex.Message);
             }
         });
     }

@@ -25,7 +25,6 @@ public static class ReservationEndpoint
         if (reservation == null)
             return Results.Problem(Errors.Failure);
         return Results.Ok(reservation);
-       
     }
 
 }

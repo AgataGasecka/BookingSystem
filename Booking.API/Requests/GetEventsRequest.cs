@@ -23,7 +23,6 @@ public class GetEventValidator : AbstractValidator<GetEventsRequest>
     {
         RuleFor(x => x.Category).IsInEnum();
         RuleFor(x => x.From < x.To).NotEmpty();
-
     }
 }
 

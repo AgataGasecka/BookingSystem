@@ -1,5 +1,4 @@
-﻿
-using Booking.Domain.Entities;
+﻿using Booking.Domain.Entities;
 using Booking.Domain.UsefulModels;
 
 namespace Booking.Domain.Abstract;

@@ -104,20 +104,27 @@ public sealed class EventUnitTests
         Assert.AreEqual(boolResult, result);
     }
     [TestMethod]
-    [DataRow()]
-
     public void GenerateSalesReportTest()
     {
         var testEvent = CreateEventWithReservations();
 
         var report = testEvent.GenerateSalesReport();
-        Assert.AreEqual(report.TotalAmountSum, 910);
-        Assert.AreEqual(report.TotalNumberOfSoldTickets, 13);
+        Assert.AreEqual(910, report.TotalAmountSum);
+        Assert.AreEqual(13, report.TotalNumberOfSoldTickets);
         Assert.IsTrue(report.SalesReportDictionary.Count == 9);
         Assert.IsTrue(report.SalesReportDictionary.ElementAt(2).Value.DailyAmountsSum == 630);
         Assert.IsTrue(report.SalesReportDictionary.ElementAt(2).Value.DailyNumberOfSoldTickets == 9);
         Assert.IsTrue(report.SalesReportDictionary.ElementAt(4).Value.DailyAmountsSum == 280);
         Assert.IsTrue(report.SalesReportDictionary.ElementAt(4).Value.DailyNumberOfSoldTickets == 4);
     }
-}
 
+    [TestMethod]
+    public void CreateReservationTest()
+    {
+        var testEvent = CreateEventWithoutReservations();
+        testEvent.CreateReservation(15, "Agata");
+        Assert.AreEqual(1, testEvent.Reservations.Count);
+        Assert.AreEqual("Agata", testEvent.Reservations.First().OwnerName);
+        Assert.AreEqual(15, testEvent.Reservations.First().NumberOfTickets);
+    }
+}

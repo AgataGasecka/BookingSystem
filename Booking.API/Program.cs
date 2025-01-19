@@ -1,5 +1,4 @@
 using System.Text.Json.Serialization;
-using Booking;
 using Booking.API.Endpoints;
 using Booking.Domain.Abstract;
 using Booking.Persistence;
@@ -35,5 +34,3 @@ app.AddReservationEndpoint();
 
 app.UseHttpsRedirection();
 app.Run();
-
-

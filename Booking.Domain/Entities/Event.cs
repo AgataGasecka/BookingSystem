@@ -1,4 +1,5 @@
-﻿using Booking.Domain.UsefulModels;
+﻿using Booking.Domain.Responses;
+using Booking.Domain.UsefulModels;
 
 namespace Booking.Domain.Entities;
 public class Event : EventBase
@@ -16,7 +17,7 @@ public class Event : EventBase
     public int TotalTickets { get; set; }
     public int AvailableTickets { get; set; }
 
-    public List<Reservation> Reservations { get; set; }
+    public List<Reservation> Reservations { get; set; } = new List<Reservation>();
 
     public Reservation CreateReservation(int numberOfTickets, string ownerName)
     {
@@ -50,13 +51,13 @@ public class Event : EventBase
         AvailableTickets -= numberOfTickets;
     }
 
-    public SalesReport GenerateSalesReport(List<Reservation> reservations)
+    public SalesReport GenerateSalesReport()
     {
         SalesReport report = new SalesReport()
         {
             SalesReportDictionary = new Dictionary<DateTime, SalesReportRow>()
         };
-        for (var i = AnnouncementDate; i < Date; i = i.AddDays(1))
+        for (var i = AnnouncementDate; i <= Date; i = i.AddDays(1))
         {
             var reservationsForThisDay = Reservations.Where(d => d.EventId == Id && d.ReservationDate.Day == i.Day &&
             d.ReservationDate.Month == i.Month && d.ReservationDate.Year == i.Year).ToList();
@@ -73,6 +74,19 @@ public class Event : EventBase
 
         }
         return report;
+    }
+
+    public GetEventResponse CreateResponse()
+    {
+        return new GetEventResponse()
+        {
+            AvailableTickets = AvailableTickets,
+            Name = Name,
+            Category = Category,
+            TicketPrice = TicketPrice,
+            Date = Date,
+            Description = Description
+        };
     }
 }
 

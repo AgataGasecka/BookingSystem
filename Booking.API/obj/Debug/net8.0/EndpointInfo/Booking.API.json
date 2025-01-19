@@ -64,19 +64,6 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Event"
-                  }
-                }
-              }
-            }
-          },
           "400": {
             "description": "Bad Request",
             "content": {
@@ -107,16 +94,6 @@
           "required": true
         },
         "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Event"
-                }
-              }
-            }
-          },
           "400": {
             "description": "Bad Request",
             "content": {
@@ -242,60 +219,6 @@
         },
         "additionalProperties": false
       },
-      "Event": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "rowVersion": {
-            "type": "string",
-            "format": "byte",
-            "nullable": true
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "announcementDate": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "date": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "category": {
-            "type": "string",
-            "nullable": true
-          },
-          "ticketPrice": {
-            "type": "number",
-            "format": "double"
-          },
-          "totalTickets": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "availableTickets": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "reservations": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Reservation"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "EventCategory": {
         "enum": [
           "Music",
@@ -342,36 +265,6 @@
           }
         },
         "additionalProperties": { }
-      },
-      "Reservation": {
-        "type": "object",
-        "properties": {
-          "reservationId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "eventId": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "numberOfTickets": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "ownerName": {
-            "type": "string",
-            "nullable": true
-          },
-          "amount": {
-            "type": "number",
-            "format": "double"
-          },
-          "reservationDate": {
-            "type": "string",
-            "format": "date-time"
-          }
-        },
-        "additionalProperties": false
       }
     }
   }

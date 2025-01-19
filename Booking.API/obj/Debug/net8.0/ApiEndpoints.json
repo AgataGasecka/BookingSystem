@@ -15,13 +15,6 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "Booking.Domain.Entities.Event",
-        "MediaTypes": [
-          "application/json"
-        ],
-        "StatusCode": 200
-      },
-      {
         "Type": "Microsoft.AspNetCore.Http.HttpValidationProblemDetails",
         "MediaTypes": [
           "application/problem\u002Bjson"
@@ -102,13 +95,6 @@
       }
     ],
     "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.List\u00601[[Booking.Domain.Entities.Event, Booking.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "application/json"
-        ],
-        "StatusCode": 200
-      },
       {
         "Type": "Microsoft.AspNetCore.Http.HttpValidationProblemDetails",
         "MediaTypes": [

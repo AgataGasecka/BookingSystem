@@ -20,7 +20,7 @@ public static class ReservationEndpoint
         var reservation = eventItem.CreateReservation(reservationRequest.NumberOfTickets, reservationRequest.OwnerName);
         await eventRepository.UpdateEventReservations(reservation, eventItem.Id, eventItem.AvailableTickets);
         if (reservation == null)
-            return Results.NoContent();// wymysl jak ulepszyc
+            return Results.Problem("Adding reservation failed");
         return Results.Ok(reservation);
        
     }

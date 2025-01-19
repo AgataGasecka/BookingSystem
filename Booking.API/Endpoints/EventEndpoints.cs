@@ -37,11 +37,12 @@ public static class EventEndpoints
         var eventItem = await eventRepository.GetEvent(id);
         if (eventItem == null)
             return Results.NotFound("Event with given id doesn't exist");
-        return Results.Ok(eventItem);
+        
+        return Results.Ok(eventItem.CreateResponse());
     }
 
 
-    static async Task<List<Event>> HandleGetEvents(IEventRepository eventRepository, [AsParameters] GetEventsRequest eventRequest)
+    static async Task<IResult> HandleGetEvents(IEventRepository eventRepository, [AsParameters] GetEventsRequest eventRequest)
     {
         var period = new Period()
         {
@@ -49,11 +50,14 @@ public static class EventEndpoints
             To = eventRequest.To,
         };
         var events = await eventRepository.GetEvents(eventRequest.Category, period);
-        return events.ToList();
+        if (events.Count() == 0)
+            return Results.NotFound("No events for given category and period");
+        var response = events.Select(e => e.CreateResponse()).ToList();
+        return Results.Ok(response);
     }
 
 
-    static async Task<Event> HandlePostEvent(IEventRepository eventRepository, [FromBody] CreateEventRequest eventRequest)
+    static async Task<IResult> HandlePostEvent(IEventRepository eventRepository, [FromBody] CreateEventRequest eventRequest)
     {
         var eventToCreate = new Event
         {
@@ -66,7 +70,10 @@ public static class EventEndpoints
             AvailableTickets = eventRequest.AvailableTickets,
             TicketPrice = eventRequest.TicketPrice
         };
-        return await eventRepository.CreateEvent(eventToCreate);
+        var createdEvent = await eventRepository.CreateEvent(eventToCreate);
+        if (createdEvent == null)
+            return Results.Problem("Adding event failed");
+        return Results.Ok(createdEvent);
 
     }
     static async Task<IResult> HandleGetReport(int id, IEventRepository eventRepository)
@@ -74,9 +81,7 @@ public static class EventEndpoints
         var eventItem = await eventRepository.GetEvent(id);
         if (eventItem == null)
             return Results.NotFound("Event with given id doesn't exist");
-        var reservations = await eventRepository.GetReservationsForEvent(id);
-
-        return Results.Ok(eventItem.GenerateSalesReport(reservations.ToList()));
+        return Results.Ok(eventItem.GenerateSalesReport());
     }
 }
 

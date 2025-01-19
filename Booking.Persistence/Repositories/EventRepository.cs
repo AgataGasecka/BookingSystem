@@ -30,7 +30,8 @@ public class EventRepository : IEventRepository
 
     public async Task<Event> GetEvent(int eventId)
     {
-        return await _dbContext.Events.FirstOrDefaultAsync(e => e.Id == eventId);
+        await GetReservationsForEvent(eventId);
+        return await _dbContext.Events.SingleAsync(e => e.Id == eventId);
     }
 
     public async Task UpdateEventReservations(Reservation reservation, int eventId, int availableTicketsNumber)
@@ -39,7 +40,8 @@ public class EventRepository : IEventRepository
         {
             await _dbContext.Reservations.AddAsync(reservation);
             var eventToUpdate =_dbContext.Events.FirstOrDefault(e => e.Id == eventId);
-            eventToUpdate.AvailableTickets = availableTicketsNumber;
+            if(eventToUpdate != null)
+                eventToUpdate.AvailableTickets = availableTicketsNumber;
             try
             {
                 await _dbContext.SaveChangesAsync();       

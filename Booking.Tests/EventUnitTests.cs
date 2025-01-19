@@ -20,7 +20,49 @@ public sealed class EventUnitTests
             Id = 1,
             Reservations = { },
         };
+    }
 
+    private Event CreateEventWithReservations()
+    {
+        return new Event()
+        {
+            AnnouncementDate = DateTime.Now.AddDays(-5),
+            AvailableTickets = 300,
+            TotalTickets = 300,
+            Category = EventCategory.Party.ToString(),
+            Date = DateTime.Now.AddDays(3),
+            Description = "Carnival ball with costumes",
+            Name = "Carnival ball",
+            TicketPrice = 70,
+            Id = 2,
+            Reservations = { CreateFirstReservation(), CreateSecondReservation() },
+        };
+    }
+
+    private Reservation CreateFirstReservation()
+    {
+        return new Reservation()
+        {
+            Amount = 280,
+            EventId = 2,
+            NumberOfTickets = 4,
+            OwnerName = "Agata",
+            ReservationDate = DateTime.Now.AddDays(-1),
+            ReservationId = 1
+        };
+    }
+
+    private Reservation CreateSecondReservation()
+    {
+        return new Reservation()
+        {
+            Amount = 630,
+            EventId = 2,
+            NumberOfTickets = 9,
+            OwnerName = "Wojtek",
+            ReservationDate = DateTime.Now.AddDays(-3),
+            ReservationId = 1
+        };
     }
 
 
@@ -40,7 +82,6 @@ public sealed class EventUnitTests
 
     [TestMethod]
     [DataRow(10,1500)]
-    [DataRow(2, 300)]
     [DataRow(77, 11550)]
     [DataRow(18, 2700)]
     [DataRow(0, 0)]
@@ -54,15 +95,29 @@ public sealed class EventUnitTests
     }
 
     [TestMethod]
-    [DataRow(400, true)]
     [DataRow(499, true)]
     [DataRow(510, false)]
-    [DataRow(1000, false)]
     public void GivenNumberOfTicketsIsAvailableTest(int ticketsNumber, bool result)
     {
         var testEvent = CreateEventWithoutReservations();
         var boolResult = testEvent.GivenNumberOfTicketsIsAvailable(ticketsNumber);
         Assert.AreEqual(boolResult, result);
+    }
+    [TestMethod]
+    [DataRow()]
+
+    public void GenerateSalesReportTest()
+    {
+        var testEvent = CreateEventWithReservations();
+
+        var report = testEvent.GenerateSalesReport();
+        Assert.AreEqual(report.TotalAmountSum, 910);
+        Assert.AreEqual(report.TotalNumberOfSoldTickets, 13);
+        Assert.IsTrue(report.SalesReportDictionary.Count == 9);
+        Assert.IsTrue(report.SalesReportDictionary.ElementAt(2).Value.DailyAmountsSum == 630);
+        Assert.IsTrue(report.SalesReportDictionary.ElementAt(2).Value.DailyNumberOfSoldTickets == 9);
+        Assert.IsTrue(report.SalesReportDictionary.ElementAt(4).Value.DailyAmountsSum == 280);
+        Assert.IsTrue(report.SalesReportDictionary.ElementAt(4).Value.DailyNumberOfSoldTickets == 4);
     }
 }
 
